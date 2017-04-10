@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Alarm Clock</string>
+    <string name="select_calendar">Sélectionnez le calendrier de votre emploi du temps</string>
+    <string name="calendrier">Calendrier</string>
+</resources>
