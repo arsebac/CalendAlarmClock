@@ -1,10 +1,10 @@
-package arsebac.alarm.clock;
+package arsebac.alarm.clock.model;
 
 /**
  * @author Francois Melkonian
  */
 
-class CalendarInfos {
+public class CalendarInfos {
     private final Long id;
     private final String name;
     private final int color;

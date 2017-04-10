@@ -9,7 +9,11 @@ import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import arsebac.alarm.clock.model.CalendarInfos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +42,7 @@ public class InitialiseActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        List<CalendarInfos> infos = new ArrayList<>();
+        final List<CalendarInfos> infos = new ArrayList<>();
         Cursor cur = cr.query(uri, EVENT_PROJECTION, null, null, null);
         while (cur.moveToNext()) {
             String name = cur.getString(1);
@@ -47,7 +51,16 @@ public class InitialiseActivity extends AppCompatActivity {
             infos.add(new CalendarInfos(id,name,color));
         }
         cur.close();
-        ListView list = (ListView) findViewById(R.id.listView);
-        list.setAdapter(new CalendarListAdapter(this,android.R.layout.activity_list_item,infos));
+        final ListView list = (ListView) findViewById(R.id.listView);
+        ListAdapter listAdapter = new CalendarListAdapter(this.getApplicationContext(),android.R.layout.simple_list_item_1,infos);
+        list.setAdapter(listAdapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                CalendarInfos chosen = (CalendarInfos) list.getItemAtPosition(position);
+
+            }
+        }
     }
 }
